@@ -1,9 +1,9 @@
-import { ConnectionOptions } from "typeorm";
+import { ConnectionOptions, DataSource } from "typeorm";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const ormConfig: ConnectionOptions = {
+export const dataSourceOptions: ConnectionOptions = {
   type: "postgres",
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT || "5432", 10),
@@ -12,8 +12,8 @@ const ormConfig: ConnectionOptions = {
   database: process.env.DB_NAME,
   synchronize: false,
   logging: process.env.DB_LOGGING === "true" ? true : false,
-  entities: ["dist/db/entities/*.js"],
-  migrations: ["dist/db/migrations/*.js"],
+  entities: ["./src/db/entities/*.ts"],
+  migrations: ["./src/db/migrations/*.ts"],
 };
 
-export default ormConfig;
+export const AppDataSource = new DataSource(dataSourceOptions);
