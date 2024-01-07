@@ -1,7 +1,8 @@
+import "reflect-metadata";
 import express from "express";
 import dotenv from "dotenv";
-import { createConnection } from "typeorm";
-import ormConfig from "../ormconfig";
+import authRoutes from "./routes/auth.route";
+import { AppDataSource } from "./db/conf/appDataSource";
 
 dotenv.config();
 
@@ -9,22 +10,19 @@ const app = express();
 
 app.use(express.json());
 
-const startApp = () => {
-  try {
-    createConnection(ormConfig)
-      .then(() => {
-        const PORT = process.env.PORT;
+// routes integration
+app.use("/api/auth", authRoutes);
 
-        app.listen(PORT, () => {
-          console.log(`Server is running on port ${PORT}`);
-        });
-      })
-      .catch((error) => {
-        console.error("Database connection error:", error);
-      });
-  } catch (error) {
-    console.error("Error starting the app:", error);
-  }
-};
+AppDataSource.initialize()
+  .then(async () => {
+    const PORT = process.env.PORT;
 
-startApp();
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+
+    console.log("Data Source has been initialized!");
+  })
+  .catch((error: any) => {
+    console.error("Database connection error:", error);
+  });
