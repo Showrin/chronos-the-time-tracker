@@ -1,3 +1,4 @@
+import morgan from "morgan";
 import "reflect-metadata";
 import express from "express";
 import dotenv from "dotenv";
@@ -9,6 +10,8 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+
+app.use(morgan("tiny"));
 
 // routes integration
 app.use("/api/auth", authRoutes);
