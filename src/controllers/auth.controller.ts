@@ -3,9 +3,10 @@ import * as AuthService from "../services/auth.service";
 import {
   IExistingUserResponse,
   INewUserResponse,
+  ISigninRequest,
   ISignupRequest,
   IUserWithDeletedAccountResponse,
-} from "../interfaces/auth.interface";
+} from "../types/auth.type";
 import AuthMessage from "../messages/auth.message";
 
 export const signup = async (
@@ -55,4 +56,26 @@ export const signup = async (
     console.error(error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
+};
+
+export const signin = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const userCreds: ISigninRequest = req.body;
+  const { email, password } = userCreds;
+
+  if (!email || !password) {
+    return res.status(401).send({ message: "Invalid email or password." });
+  }
+
+  const jwtToken = await AuthService.signinUser(email, password);
+
+  if (!jwtToken) {
+    return res.status(401).send({ message: "Invalid email or password." });
+  }
+
+  return res
+    .status(200)
+    .send({ message: "Login successful.", token: jwtToken });
 };

@@ -1,7 +1,11 @@
 import bcrypt from "bcrypt";
+import { sign } from "jsonwebtoken";
+import dotenv from "dotenv";
 import UserRepository from "../repositories/user.repository";
-import { ISignupRequest } from "../interfaces/auth.interface";
+import { ISignupRequest } from "../types/auth.type";
 import { UserEntity } from "../db/entities/user.entity";
+
+dotenv.config();
 
 export const signupUser = async (
   user: ISignupRequest
@@ -24,4 +28,47 @@ export const signupUser = async (
   });
 
   return newUser;
+};
+
+export const generateJwtToken = async (user: UserEntity) => {
+  const jwtSecretKey = process.env.JWT_SECRET;
+
+  if (jwtSecretKey) {
+    const token = await sign({ userId: user.id }, jwtSecretKey, {
+      expiresIn: "1h",
+    });
+
+    return token;
+  }
+
+  return null;
+};
+
+export const signinUser = async (
+  email: string,
+  password: string
+): Promise<string | null> => {
+  const user = await UserRepository.findByEmail(email, {
+    select: { id: true, email: true, password: true },
+  });
+
+  if (!user) {
+    return null;
+  }
+
+  try {
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return null;
+    }
+
+    const jwtToken = await generateJwtToken(user);
+
+    return jwtToken;
+  } catch (error) {
+    console.error(error);
+  }
+
+  return null;
 };

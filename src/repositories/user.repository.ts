@@ -1,10 +1,13 @@
 import { UserEntity } from "../db/entities/user.entity";
 import { AppDataSource } from "../db/conf/appDataSource";
-import { ISignupRequest } from "../interfaces/auth.interface";
+import { ISignupRequest } from "../types/auth.type";
 
 const UserRepository = AppDataSource.getRepository(UserEntity).extend({
-  async findByEmail(email: string): Promise<UserEntity | null> {
-    const user = await this.findOne({ where: { email } });
+  async findByEmail(
+    email: string,
+    options: any = {}
+  ): Promise<UserEntity | null> {
+    const user = await this.findOne({ where: { email }, ...options });
 
     return user || null;
   },

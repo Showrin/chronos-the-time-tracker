@@ -29,3 +29,13 @@ export interface INewUserResponse {
     updatedAt: Date;
   };
 }
+
+export interface ISigninRequest {
+  email: string;
+  password: string;
+}
+
+export interface ISigninSuccessResponse {
+  message: string;
+  token: string;
+}
