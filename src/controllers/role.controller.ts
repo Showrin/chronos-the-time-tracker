@@ -32,7 +32,7 @@ export const createRole = async (
     console.error(error);
 
     return res.status(500).json({
-      message: errorMessage.InternalServerError,
+      message: errorMessage.InternalServerError(),
     });
   }
 };
@@ -51,7 +51,31 @@ export const getRoles = async (
     console.error(error);
 
     return res.status(500).json({
-      message: errorMessage.InternalServerError,
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
+
+export const getRoleById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const roleId = parseInt(req.params?.roleId, 10);
+    const role = await RoleRepository.getRoleById(roleId);
+
+    if (!role) {
+      return res.status(404).json({ message: errorMessage.NotFound("Role") });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Role fetched successfully.", role });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
     });
   }
 };

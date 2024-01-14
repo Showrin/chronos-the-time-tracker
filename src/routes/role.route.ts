@@ -5,5 +5,6 @@ const roleRouter = express.Router();
 
 roleRouter.post("/", RoleController.createRole);
 roleRouter.get("/", RoleController.getRoles);
+roleRouter.get("/:roleId", RoleController.getRoleById);
 
 export { roleRouter };

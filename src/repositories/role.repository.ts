@@ -13,6 +13,16 @@ export const RoleRepository = AppDataSource.getRepository(RoleEntity).extend({
     }
   },
 
+  async getRoleById(id: number) {
+    try {
+      const roles = await this.findOneBy({ id });
+
+      return roles;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   async createRole(role: ICreateRoleRequestBody) {
     try {
       const newRole = await this.create(role);
