@@ -1,0 +1,93 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "chronos-api",
+    "dateExported": "2024-01-14T20:52:50.114Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "ee769e49-5bca-4d33-a8b9-b7fcb6fce285",
+            "name": "auth",
+            "containerId": "",
+            "created": "2024-01-11T21:11:43.561Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "dee403df-6fdd-4cf7-a8a9-c54301f24ef3",
+            "name": "roles",
+            "containerId": "",
+            "created": "2024-01-12T21:09:40.122Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "e6295ea9-ae11-414f-8dbb-37b9738cfc7e",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "ee769e49-5bca-4d33-a8b9-b7fcb6fce285",
+            "name": "signin a user",
+            "url": "/auth/signin",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-01-11T21:14:29.865Z",
+            "modified": "2024-01-14T15:49:42.217Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"showrin@gmail.com\",\n  \"password\": \"1234\"\n}\n",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.token",
+                    "action": "setto",
+                    "value": "{{auth_token}}"
+                }
+            ]
+        },
+        {
+            "_id": "7f12014a-93cf-4ef6-b38e-b22d6725ad69",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "ee769e49-5bca-4d33-a8b9-b7fcb6fce285",
+            "name": "signup a user",
+            "url": "/auth/signup",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-01-11T21:25:22.349Z",
+            "modified": "2024-01-11T21:26:05.230Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"showrin@gmail.com\",\n  \"firstName\": \"Showrin\",\n  \"lastName\": \"Barua\",\n  \"password\": \"1234\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ea371c53-2c32-4a23-b0ac-dd31f8fbe2da",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "dee403df-6fdd-4cf7-a8a9-c54301f24ef3",
+            "name": "get roles",
+            "url": "/roles",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-01-14T11:23:12.313Z",
+            "modified": "2024-01-14T11:44:32.995Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "auth": {
+            "type": "bearer",
+            "bearer": "{{auth_token}}"
+        },
+        "options": {
+            "baseUrl": "http://localhost:8000/api"
+        },
+        "envId": "701584ad-5cb0-48bf-a07d-e25f58228f0f"
+    }
+}
