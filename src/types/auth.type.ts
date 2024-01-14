@@ -43,3 +43,11 @@ export interface ISigninSuccessResponse {
   message: string;
   token: string;
 }
+
+export type ICanAccessParams =
+  | {
+      manager?: boolean;
+      lead?: boolean;
+      engineer?: boolean;
+    }
+  | "*";
