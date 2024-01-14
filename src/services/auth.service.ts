@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import UserRepository from "../repositories/user.repository";
 import { ISignupRequest } from "../types/auth.type";
 import { UserEntity } from "../db/entities/user.entity";
+import { RoleEnum } from "../enums/role.enum";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ export const signupUser = async (
   const hashPassword = await bcrypt.hash(password, 10);
   const newUser = await UserRepository.createUser({
     ...user,
+    role: RoleEnum.ENGINEER,
     password: hashPassword,
   });
 
@@ -39,6 +41,7 @@ export const generateJwtToken = async (user: UserEntity) => {
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
+        role: user.role,
       },
       jwtSecretKey,
       {
@@ -63,6 +66,7 @@ export const signinUser = async (
       password: true,
       firstName: true,
       lastName: true,
+      role: true,
     },
   });
 

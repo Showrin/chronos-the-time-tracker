@@ -47,6 +47,7 @@ export const signup = async (
         firstName: user.firstName,
         lastName: user.lastName,
         fullName: user.fullName,
+        role: user.role,
         deletedAt: user.deletedAt,
         updatedAt: user.updatedAt,
       },

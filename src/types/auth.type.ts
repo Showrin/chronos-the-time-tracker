@@ -1,7 +1,10 @@
+import { RoleEnum } from "../enums/role.enum";
+
 export interface ISignupRequest {
   email: string;
   firstName: string;
   lastName?: string;
+  role: RoleEnum;
   password: string;
 }
 
@@ -24,6 +27,7 @@ export interface INewUserResponse {
     email: string;
     firstName: string;
     lastName: string;
+    role: RoleEnum;
     fullName: string;
     deletedAt: Date;
     updatedAt: Date;

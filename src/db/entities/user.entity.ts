@@ -1,6 +1,6 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { BaseEntity } from "./base.entity";
+import { RoleEnum } from "../../enums/role.enum";
 
 @Entity({ name: "users" })
 export class UserEntity extends BaseEntity {
@@ -19,10 +19,8 @@ export class UserEntity extends BaseEntity {
   @Column({ select: false })
   password!: string;
 
-  @BeforeInsert()
-  private generateUUID() {
-    this.id = uuidv4();
-  }
+  @Column({ type: "enum", enum: RoleEnum, default: RoleEnum.ENGINEER })
+  role!: RoleEnum;
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

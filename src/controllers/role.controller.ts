@@ -27,8 +27,6 @@ export const createRole = async (
       roleInfo.abbr
     );
 
-    console.log(existingRole);
-
     if (!!existingRole) {
       if (!!existingRole.deletedAt) {
         return res.status(400).json({
