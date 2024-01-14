@@ -34,9 +34,17 @@ export const generateJwtToken = async (user: UserEntity) => {
   const jwtSecretKey = process.env.JWT_SECRET;
 
   if (jwtSecretKey) {
-    const token = await sign({ userId: user.id }, jwtSecretKey, {
-      expiresIn: "1h",
-    });
+    const token = await sign(
+      {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
+      jwtSecretKey,
+      {
+        expiresIn: "1h",
+      }
+    );
 
     return token;
   }
@@ -49,7 +57,13 @@ export const signinUser = async (
   password: string
 ): Promise<string | null> => {
   const user = await UserRepository.findByEmail(email, {
-    select: { id: true, email: true, password: true },
+    select: {
+      id: true,
+      email: true,
+      password: true,
+      firstName: true,
+      lastName: true,
+    },
   });
 
   if (!user) {
