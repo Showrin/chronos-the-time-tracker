@@ -44,4 +44,14 @@ export const RoleRepository = AppDataSource.getRepository(RoleEntity).extend({
       throw error;
     }
   },
+
+  async deleteRoleById(id: number) {
+    try {
+      const newRole = await this.softDelete(id);
+
+      return newRole;
+    } catch (error) {
+      throw error;
+    }
+  },
 });

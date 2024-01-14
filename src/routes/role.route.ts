@@ -7,5 +7,6 @@ roleRouter.post("/", RoleController.createRole);
 roleRouter.get("/", RoleController.getRoles);
 roleRouter.get("/:roleId", RoleController.getRoleById);
 roleRouter.put("/:roleId", RoleController.updateRoleById);
+roleRouter.delete("/:roleId", RoleController.deleteRoleById);
 
 export { roleRouter };

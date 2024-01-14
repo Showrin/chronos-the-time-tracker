@@ -105,3 +105,21 @@ export const updateRoleById = async (
     });
   }
 };
+
+export const deleteRoleById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const roleId = parseInt(req.params?.roleId, 10);
+    const result = await RoleRepository.deleteRoleById(roleId);
+
+    return res.status(200).json({ message: "Role deleted successfully." });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
