@@ -22,6 +22,26 @@ export const createRole = async (
   }
 
   try {
+    const existingRole = await RoleRepository.findByNameOrAbbr(
+      roleInfo.name,
+      roleInfo.abbr
+    );
+
+    console.log(existingRole);
+
+    if (!!existingRole) {
+      if (!!existingRole.deletedAt) {
+        return res.status(400).json({
+          message: `A role named "${existingRole.name}" with abbr: "${existingRole.abbr}" was deleted before. Do you want to reactivate it?`,
+          existingRole,
+        });
+      }
+
+      return res.status(400).json({
+        message: "A role with the provided name or abbr already exists.",
+      });
+    }
+
     const newRole = await RoleRepository.createRole({
       ...roleInfo,
       // @ts-ignore
@@ -115,6 +135,28 @@ export const deleteRoleById = async (
     const result = await RoleRepository.deleteRoleById(roleId);
 
     return res.status(200).json({ message: "Role deleted successfully." });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
+
+export const reactivateRoleById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const roleId = parseInt(req.params?.roleId, 10);
+    const result = await RoleRepository.restore(roleId);
+
+    if (result.affected === 0) {
+      return res.status(404).json({ message: errorMessage.NotFound("Role") });
+    }
+
+    return res.status(200).json({ message: "Role reactivated successfully." });
   } catch (error) {
     console.error(error);
 

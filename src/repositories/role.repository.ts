@@ -13,6 +13,19 @@ export const RoleRepository = AppDataSource.getRepository(RoleEntity).extend({
     }
   },
 
+  async findByNameOrAbbr(name?: string, abbr?: string) {
+    try {
+      const role = await this.createQueryBuilder("role")
+        .where("role.name = :name OR role.abbr = :abbr", { name, abbr })
+        .withDeleted()
+        .getOne();
+
+      return role;
+    } catch (error) {
+      throw error;
+    }
+  },
+
   async getRoleById(id: number) {
     try {
       const roles = await this.findOneBy({ id });
@@ -37,9 +50,9 @@ export const RoleRepository = AppDataSource.getRepository(RoleEntity).extend({
 
   async updateRoleById(id: number, role: ICreateRoleRequestBody) {
     try {
-      const newRole = await this.update({ id }, role);
+      const result = await this.update({ id }, role);
 
-      return newRole;
+      return result;
     } catch (error) {
       throw error;
     }
@@ -47,9 +60,19 @@ export const RoleRepository = AppDataSource.getRepository(RoleEntity).extend({
 
   async deleteRoleById(id: number) {
     try {
-      const newRole = await this.softDelete(id);
+      const result = await this.softDelete(id);
 
-      return newRole;
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  async reactivateRoleById(id: number) {
+    try {
+      const result = await this.restore(id);
+
+      return result;
     } catch (error) {
       throw error;
     }
