@@ -8,6 +8,7 @@ import {
   IUserWithDeletedAccountResponse,
 } from "../types/auth.type";
 import AuthMessage from "../messages/auth.message";
+import errorMessage from "../messages/error.message";
 
 export const signup = async (
   req: Request,
@@ -54,7 +55,8 @@ export const signup = async (
     return res.status(201).json(response);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Internal Server Error" });
+    
+    return res.status(500).json({ message: errorMessage.InternalServerError });
   }
 };
 
