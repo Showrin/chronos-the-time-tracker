@@ -5,3 +5,8 @@ export interface ICreateRoleRequestBody {
   abbr: string;
   updatedBy?: UserEntity;
 }
+
+export interface IUpdateRoleRequestBody {
+  name?: string;
+  abbr?: string;
+}

@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { RoleRepository } from "./../repositories/role.repository";
-import { ICreateRoleRequestBody } from "../types/role.type";
+import {
+  ICreateRoleRequestBody,
+  IUpdateRoleRequestBody,
+} from "../types/role.type";
 import errorMessage from "../messages/error.message";
 import { JwtPayload } from "jsonwebtoken";
 
@@ -71,6 +74,29 @@ export const getRoleById = async (
     return res
       .status(200)
       .json({ message: "Role fetched successfully.", role });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
+
+export const updateRoleById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const roleId = parseInt(req.params?.roleId, 10);
+    const roleInfo: IUpdateRoleRequestBody = req.body;
+    const result = await RoleRepository.update(roleId, roleInfo);
+
+    if (result.affected === 0) {
+      return res.status(404).json({ message: errorMessage.NotFound("Role") });
+    }
+
+    return res.status(200).json({ message: "Role updated successfully." });
   } catch (error) {
     console.error(error);
 

@@ -34,4 +34,14 @@ export const RoleRepository = AppDataSource.getRepository(RoleEntity).extend({
       throw error;
     }
   },
+
+  async updateRoleById(id: number, role: ICreateRoleRequestBody) {
+    try {
+      const newRole = await this.update({ id }, role);
+
+      return newRole;
+    } catch (error) {
+      throw error;
+    }
+  },
 });
