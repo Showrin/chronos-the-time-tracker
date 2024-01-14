@@ -2,8 +2,8 @@ import morgan from "morgan";
 import "reflect-metadata";
 import express from "express";
 import dotenv from "dotenv";
-import authRoutes from "./routes/auth.route";
 import { AppDataSource } from "./db/conf/appDataSource";
+import { baseRouter } from "./routes/base.route";
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 // routes integration
-app.use("/api/auth", authRoutes);
+app.use("/", baseRouter);
 
 AppDataSource.initialize()
   .then(async () => {
