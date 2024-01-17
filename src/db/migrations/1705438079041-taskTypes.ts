@@ -10,6 +10,7 @@ export class TaskTypes1705438079041 implements MigrationInterface {
             name: "id",
             type: "integer",
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: "increment",
           },
           {
