@@ -151,8 +151,19 @@ export const deleteTaskTypeById = async (
 ): Promise<Response> => {
   try {
     const taskTypeId = parseInt(req.params?.taskTypeId, 10);
+    // @ts-ignore
+    const user: JwtPayload = req?.user;
 
-    await TaskTypeRepository.deleteTaskTypeById(taskTypeId);
+    const taskType = await TaskTypeRepository.deleteTaskTypeById(
+      taskTypeId,
+      user
+    );
+
+    if (!taskType) {
+      return res
+        .status(404)
+        .json({ message: errorMessage.NotFound("Task type") });
+    }
 
     return res.status(200).json({ message: "Task type deleted successfully." });
   } catch (error) {

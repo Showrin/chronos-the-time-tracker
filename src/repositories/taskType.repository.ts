@@ -30,6 +30,22 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+  async findDeletedTaskTypeById(id: number) {
+    try {
+      const taskType = await this.findOne({
+        withDeleted: true,
+        where: {
+          id,
+          deletedAt: Not(IsNull()),
+        },
+        relations: ["updatedBy"],
+      });
+
+      return taskType;
+    } catch (error) {
+      throw error;
+    }
+  },
   async findTaskTypeByName(name: string) {
     try {
       const taskType = await this.findOneBy({ name });
@@ -66,23 +82,30 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
-  async deleteTaskTypeById(id: number) {
+  async deleteTaskTypeById(id: number, user: JwtPayload) {
     try {
-      const result = await this.softDelete(id);
-      return result;
+      const taskType = await this.getTaskTypeById(id);
+
+      if (!taskType) {
+        return null;
+      }
+
+      const { iat, exp, ...userInfo } = user;
+
+      taskType.deletedAt = new Date();
+      // @ts-ignore
+      taskType.updatedBy = userInfo;
+
+      this.save(taskType);
+
+      return taskType;
     } catch (error) {
       throw error;
     }
   },
   async restoreTaskTypeById(id: number, user: JwtPayload) {
     try {
-      const taskType = await this.findOne({
-        withDeleted: true,
-        where: {
-          id,
-          deletedAt: Not(IsNull()),
-        },
-      });
+      const taskType = await this.findDeletedTaskTypeById(id);
 
       if (!taskType) {
         return null;
