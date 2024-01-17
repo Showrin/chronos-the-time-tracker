@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 // routes integration
-app.use("/", baseRouter);
+app.use("/api", baseRouter);
 
 AppDataSource.initialize()
   .then(async () => {

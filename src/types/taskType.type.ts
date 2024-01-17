@@ -1,12 +1,11 @@
 import { UserEntity } from "../db/entities/user.entity";
 
-export interface ICreateRoleRequestBody {
+export interface ICreateTaskTypeRequestBody {
   name: string;
-  abbr: string;
   updatedBy?: UserEntity;
 }
 
-export interface IUpdateRoleRequestBody {
+export interface IUpdateTaskTypeRequestBody {
   name?: string;
-  abbr?: string;
+  updatedBy?: UserEntity;
 }
