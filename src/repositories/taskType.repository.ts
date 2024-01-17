@@ -29,8 +29,19 @@ export const TaskTypeRepository = AppDataSource.getRepository(
   },
   async findTaskTypeByName(name: string) {
     try {
-      const taskTypes = await this.findOneBy({ name });
-      return taskTypes;
+      const taskType = await this.findOneBy({ name });
+      return taskType;
+    } catch (error) {
+      throw error;
+    }
+  },
+  async findTaskTypeByNameWithDeleted(name: string) {
+    try {
+      const taskType = await this.createQueryBuilder("taskType")
+        .where("taskType.name = :name", { name })
+        .withDeleted()
+        .getOne();
+      return taskType;
     } catch (error) {
       throw error;
     }

@@ -21,5 +21,10 @@ taskTypeRouter.put(
   canAccess({ lead: true }),
   TaskTypeController.updateTaskTypeById
 );
+taskTypeRouter.delete(
+  "/:taskTypeId",
+  canAccess({ lead: true }),
+  TaskTypeController.deleteTaskTypeById
+);
 
 export { taskTypeRouter };

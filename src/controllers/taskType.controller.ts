@@ -21,14 +21,13 @@ export const createTaskType = async (
   }
 
   try {
-    const existingTaskType = await TaskTypeRepository.findTaskTypeByName(
-      taskTypeInfo.name
-    );
+    const existingTaskType =
+      await TaskTypeRepository.findTaskTypeByNameWithDeleted(taskTypeInfo.name);
 
     if (!!existingTaskType) {
       if (!!existingTaskType.deletedAt) {
         return res.status(400).json({
-          message: `A task type named "${existingTaskType.name}" was deleted before. Do you want to reactivate it?`,
+          message: `A task type named "${existingTaskType.name}" was deleted before. Do you want to restore it?`,
           existingTaskType,
         });
       }
@@ -135,6 +134,25 @@ export const updateTaskTypeById = async (
     }
 
     return res.status(200).json({ message: "Task type updated successfully." });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
+
+export const deleteTaskTypeById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const taskTypeId = parseInt(req.params?.taskTypeId, 10);
+
+    await TaskTypeRepository.deleteTaskTypeById(taskTypeId);
+
+    return res.status(200).json({ message: "Task type deleted successfully." });
   } catch (error) {
     console.error(error);
 
