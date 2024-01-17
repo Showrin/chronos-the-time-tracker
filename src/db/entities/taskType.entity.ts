@@ -1,22 +1,11 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { BaseEntity } from "./base.entity";
-import { UserEntity } from "./user.entity";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntityWithUserColumns } from "./baseWithUserColumns.entity";
 
 @Entity({ name: "taskTypes" })
-export class TaskTypeEntity extends BaseEntity {
+export class TaskTypeEntity extends BaseEntityWithUserColumns {
   @PrimaryGeneratedColumn("increment")
   id!: number;
 
   @Column({ unique: true })
   name!: string;
-
-  @ManyToOne(() => UserEntity)
-  @JoinColumn({ name: "updatedBy" })
-  updatedBy!: UserEntity;
 }

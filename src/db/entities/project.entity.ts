@@ -5,12 +5,12 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { BaseEntity } from "./base.entity";
 import { UserEntity } from "./user.entity";
 import { ProjectModeEnum } from "../../enums/projectMode.enum";
+import { BaseEntityWithUserColumns } from "./baseWithUserColumns.entity";
 
 @Entity({ name: "projects" })
-export class ProjectEntity extends BaseEntity {
+export class ProjectEntity extends BaseEntityWithUserColumns {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -45,8 +45,4 @@ export class ProjectEntity extends BaseEntity {
   @ManyToOne(() => UserEntity)
   @JoinColumn({ name: "projectLead" })
   projectLead!: UserEntity;
-
-  @ManyToOne(() => UserEntity)
-  @JoinColumn({ name: "updatedBy" })
-  updatedBy!: UserEntity;
 }

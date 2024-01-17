@@ -5,13 +5,12 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { BaseEntity } from "./base.entity";
-import { UserEntity } from "./user.entity";
 import { TaskEntity } from "./task.entity";
 import { TaskTypeEntity } from "./taskType.entity";
+import { BaseEntityWithUserColumns } from "./baseWithUserColumns.entity";
 
 @Entity({ name: "timeLogs" })
-export class TimeLogEntity extends BaseEntity {
+export class TimeLogEntity extends BaseEntityWithUserColumns {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -31,8 +30,4 @@ export class TimeLogEntity extends BaseEntity {
 
   @Column({ type: "interval" })
   timeDuration!: string;
-
-  @ManyToOne(() => UserEntity)
-  @JoinColumn({ name: "updatedBy" })
-  updatedBy!: UserEntity;
 }

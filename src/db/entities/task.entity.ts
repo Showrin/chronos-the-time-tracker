@@ -5,12 +5,11 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { BaseEntity } from "./base.entity";
-import { UserEntity } from "./user.entity";
 import { ProjectEntity } from "./project.entity";
+import { BaseEntityWithUserColumns } from "./baseWithUserColumns.entity";
 
 @Entity({ name: "tasks" })
-export class TaskEntity extends BaseEntity {
+export class TaskEntity extends BaseEntityWithUserColumns {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -20,8 +19,4 @@ export class TaskEntity extends BaseEntity {
   @ManyToOne(() => ProjectEntity)
   @JoinColumn({ name: "project" })
   project!: ProjectEntity;
-
-  @ManyToOne(() => UserEntity)
-  @JoinColumn({ name: "updatedBy" })
-  updatedBy!: UserEntity;
 }
