@@ -29,7 +29,7 @@ export interface INewUserResponse {
     lastName: string;
     role: RoleEnum;
     fullName: string;
-    deletedAt: Date;
+    deletedAt: Date | null;
     updatedAt: Date;
   };
 }

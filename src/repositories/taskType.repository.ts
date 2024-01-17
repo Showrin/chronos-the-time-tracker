@@ -1,9 +1,12 @@
+import { JwtPayload } from "jsonwebtoken";
+import { UserEntity } from "./../db/entities/user.entity";
 import {
   IUpdateTaskTypeRequestBody,
   ICreateTaskTypeRequestBody,
 } from "./../types/taskType.type";
 import { AppDataSource } from "../db/conf/appDataSource";
 import { TaskTypeEntity } from "../db/entities/taskType.entity";
+import { IsNull, Not } from "typeorm";
 
 export const TaskTypeRepository = AppDataSource.getRepository(
   TaskTypeEntity
@@ -71,10 +74,29 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
-  async reactivateTaskTypeById(id: number) {
+  async restoreTaskTypeById(id: number, user: JwtPayload) {
     try {
-      const result = await this.restore(id);
-      return result;
+      const taskType = await this.findOne({
+        withDeleted: true,
+        where: {
+          id,
+          deletedAt: Not(IsNull()),
+        },
+      });
+
+      if (!taskType) {
+        return null;
+      }
+
+      const { iat, exp, ...userInfo } = user;
+
+      taskType.deletedAt = null;
+      // @ts-ignore
+      taskType.updatedBy = userInfo;
+
+      this.save(taskType);
+
+      return taskType;
     } catch (error) {
       throw error;
     }

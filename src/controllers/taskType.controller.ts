@@ -5,6 +5,7 @@ import {
   IUpdateTaskTypeRequestBody,
 } from "../types/taskType.type";
 import { TaskTypeRepository } from "../repositories/taskType.repository";
+import { JwtPayload } from "jsonwebtoken";
 
 export const createTaskType = async (
   req: Request,
@@ -39,6 +40,7 @@ export const createTaskType = async (
 
     const newTaskType = await TaskTypeRepository.createTaskType({
       ...taskTypeInfo,
+      // @ts-ignore
       updatedBy: { ...user },
     });
 
@@ -153,6 +155,38 @@ export const deleteTaskTypeById = async (
     await TaskTypeRepository.deleteTaskTypeById(taskTypeId);
 
     return res.status(200).json({ message: "Task type deleted successfully." });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
+
+export const restoreTaskTypeById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const taskTypeId = parseInt(req.params?.taskTypeId, 10);
+    // @ts-ignore
+    const user: JwtPayload = req?.user;
+
+    const taskType = await TaskTypeRepository.restoreTaskTypeById(
+      taskTypeId,
+      user
+    );
+
+    if (!taskType) {
+      return res
+        .status(404)
+        .json({ message: errorMessage.NotFound("Task type") });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Task type reactivated successfully.", taskType });
   } catch (error) {
     console.error(error);
 
