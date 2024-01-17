@@ -18,7 +18,10 @@ export const TaskTypeRepository = AppDataSource.getRepository(
   },
   async getTaskTypeById(id: number) {
     try {
-      const taskType = await this.findOneBy({ id });
+      const taskType = await this.findOne({
+        where: { id },
+        relations: ["updatedBy"],
+      });
       return taskType;
     } catch (error) {
       throw error;

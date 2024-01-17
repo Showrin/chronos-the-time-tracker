@@ -71,3 +71,29 @@ export const getAllTaskTypes = async (
     });
   }
 };
+
+export const getTaskTypeById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const taskTypeId = parseInt(req.params?.taskTypeId, 10);
+    const taskType = await TaskTypeRepository.getTaskTypeById(taskTypeId);
+
+    if (!taskType) {
+      return res
+        .status(404)
+        .json({ message: errorMessage.NotFound("Task type") });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Task type fetched successfully.", taskType });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
