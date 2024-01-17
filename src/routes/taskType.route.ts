@@ -9,5 +9,6 @@ taskTypeRouter.post(
   canAccess({ lead: true }),
   TaskTypeController.createTaskType
 );
+taskTypeRouter.get("/", canAccess("*"), TaskTypeController.getAllTaskTypes);
 
 export { taskTypeRouter };

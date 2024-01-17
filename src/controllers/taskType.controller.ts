@@ -52,3 +52,22 @@ export const createTaskType = async (
     });
   }
 };
+
+export const getAllTaskTypes = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const taskTypes = await TaskTypeRepository.getTaskTypes();
+
+    return res
+      .status(200)
+      .json({ message: "Task types fetched successfully.", taskTypes });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
