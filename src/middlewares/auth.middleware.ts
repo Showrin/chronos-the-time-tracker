@@ -44,6 +44,8 @@ export const authenticateJWT = (
  *
  * If params = { manager: true }, sys admin, manager can access
  *
+ * If params = {}, only sys admin can access
+ *
  * @returns void
  */
 export const canAccess: (
