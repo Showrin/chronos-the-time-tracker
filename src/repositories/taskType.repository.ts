@@ -1,5 +1,4 @@
 import { JwtPayload } from "jsonwebtoken";
-import { UserEntity } from "./../db/entities/user.entity";
 import {
   IUpdateTaskTypeRequestBody,
   ICreateTaskTypeRequestBody,
@@ -19,6 +18,7 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+
   async getTaskTypeById(id: number) {
     try {
       const taskType = await this.findOne({
@@ -30,6 +30,7 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+
   async findDeletedTaskTypeById(id: number) {
     try {
       const taskType = await this.findOne({
@@ -46,6 +47,7 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+
   async findTaskTypeByName(name: string) {
     try {
       const taskType = await this.findOneBy({ name });
@@ -54,6 +56,7 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+
   async findTaskTypeByNameWithDeleted(name: string) {
     try {
       const taskType = await this.createQueryBuilder("taskType")
@@ -65,6 +68,7 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+
   async createTaskType(taskType: ICreateTaskTypeRequestBody) {
     try {
       const newTaskType = await this.create(taskType);
@@ -74,6 +78,7 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+
   async updateTaskTypeById(id: number, taskType: IUpdateTaskTypeRequestBody) {
     try {
       const result = await this.update({ id }, taskType);
@@ -82,6 +87,7 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+
   async deleteTaskTypeById(id: number, user: JwtPayload) {
     try {
       const taskType = await this.getTaskTypeById(id);
@@ -103,6 +109,7 @@ export const TaskTypeRepository = AppDataSource.getRepository(
       throw error;
     }
   },
+
   async restoreTaskTypeById(id: number, user: JwtPayload) {
     try {
       const taskType = await this.findDeletedTaskTypeById(id);
