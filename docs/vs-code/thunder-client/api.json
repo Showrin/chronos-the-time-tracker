@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "chronos-api",
-    "dateExported": "2024-01-14T20:52:50.114Z",
+    "dateExported": "2024-01-18T20:58:41.954Z",
     "version": "1.1",
     "folders": [
         {
@@ -17,6 +17,20 @@
             "containerId": "",
             "created": "2024-01-12T21:09:40.122Z",
             "sortNum": 20000
+        },
+        {
+            "_id": "a0999b59-0178-4889-b775-4c9b2326d8a9",
+            "name": "taskTypes",
+            "containerId": "",
+            "created": "2024-01-17T18:27:16.039Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "b55df402-f1a8-45e0-b36a-aa08baf07591",
+            "name": "projects",
+            "containerId": "",
+            "created": "2024-01-18T19:53:52.808Z",
+            "sortNum": 40000
         }
     ],
     "requests": [
@@ -29,12 +43,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-01-11T21:14:29.865Z",
-            "modified": "2024-01-14T15:49:42.217Z",
+            "modified": "2024-01-18T20:37:35.283Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"showrin@gmail.com\",\n  \"password\": \"1234\"\n}\n",
+                "raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"1234\"\n}",
                 "form": []
             },
             "tests": [
@@ -55,12 +69,12 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-01-11T21:25:22.349Z",
-            "modified": "2024-01-11T21:26:05.230Z",
+            "modified": "2024-01-18T20:37:18.678Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"showrin@gmail.com\",\n  \"firstName\": \"Showrin\",\n  \"lastName\": \"Barua\",\n  \"password\": \"1234\"\n}",
+                "raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"password\": \"1234\"\n}",
                 "form": []
             },
             "tests": []
@@ -75,6 +89,194 @@
             "sortNum": 40000,
             "created": "2024-01-14T11:23:12.313Z",
             "modified": "2024-01-14T11:44:32.995Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "686350ef-91f1-4f50-b246-4bda2f5e8189",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
+            "name": "create a task type",
+            "url": "/taskTypes",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-01-17T18:27:31.492Z",
+            "modified": "2024-01-17T21:04:38.884Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Code Review\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "32b02845-5577-4176-8fe7-a3c0bfe77a25",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "b55df402-f1a8-45e0-b36a-aa08baf07591",
+            "name": "create a project",
+            "url": "/projects",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-01-18T19:53:52.808Z",
+            "modified": "2024-01-18T20:21:31.883Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Innovation Within\",\n  \"startedAt\": \"2023-01-01T00:00:00Z\",\n  \"endedAt\": \"2023-12-31T23:59:59Z\",\n  \"mode\": \"fte\",\n  \"devManager\": \"b79ee7b5-9c1a-4b9a-b31c-267fe60ce2e6\",\n  \"projectManager\": \"ce99dc71-62c4-4fef-b1db-7fa5aa8999f2\",\n  \"devLead\": \"81d5e6a0-7749-40ac-8abc-23f1d5818618\",\n  \"techLead\": \"bb68481f-3aa6-448a-b843-80b0d75a92cd\",\n  \"projectLead\": \"1f056847-b222-42bd-bfd9-bf6f3e9ff370\",\n  \"updatedBy\": \"Admin\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0d468213-79b4-468b-8a1f-37f5ba75c51f",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
+            "name": "get all task type",
+            "url": "/taskTypes",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-01-17T19:52:57.673Z",
+            "modified": "2024-01-17T20:19:51.303Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fdda1916-21e0-47df-a48a-bfb5d96968a9",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "b55df402-f1a8-45e0-b36a-aa08baf07591",
+            "name": "get all projects",
+            "url": "/projects",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-01-18T19:53:52.809Z",
+            "modified": "2024-01-18T20:27:42.740Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4eac97ae-60db-4d50-a24c-3f544c16f13f",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
+            "name": "get task type by id",
+            "url": "/taskTypes/2",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-01-17T20:07:17.411Z",
+            "modified": "2024-01-17T20:07:49.353Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1af9e6a0-785f-453d-8219-27b24e51ea23",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "b55df402-f1a8-45e0-b36a-aa08baf07591",
+            "name": "get project by id",
+            "url": "/projects/0a67b74c-d979-42d1-891a-e7bf3471b83f",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-01-18T19:53:52.810Z",
+            "modified": "2024-01-18T20:32:00.651Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "ff424052-9552-4673-a380-f311f5cd0d6e",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
+            "name": "update task type by id",
+            "url": "/taskTypes/2",
+            "method": "PUT",
+            "sortNum": 73750,
+            "created": "2024-01-17T20:17:51.751Z",
+            "modified": "2024-01-17T20:23:31.317Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Issue Analysis\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4043ad6d-c302-437a-a821-5ea96b475c2f",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "b55df402-f1a8-45e0-b36a-aa08baf07591",
+            "name": "update project by id",
+            "url": "/projects/0a67b74c-d979-42d1-891a-e7bf3471b83f",
+            "method": "PUT",
+            "sortNum": 73750,
+            "created": "2024-01-18T19:53:52.811Z",
+            "modified": "2024-01-18T20:51:48.179Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Innovation Within\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "802af7d6-0abd-4a04-87f7-71cad17f0100",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
+            "name": "delete task type by id",
+            "url": "/taskTypes/2",
+            "method": "DELETE",
+            "sortNum": 77500,
+            "created": "2024-01-17T20:27:27.246Z",
+            "modified": "2024-01-17T20:28:40.173Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "93970dc5-0791-4432-a5b6-ae7aa9b031c7",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "b55df402-f1a8-45e0-b36a-aa08baf07591",
+            "name": "delete project by id",
+            "url": "/projects/0a67b74c-d979-42d1-891a-e7bf3471b83f",
+            "method": "DELETE",
+            "sortNum": 77500,
+            "created": "2024-01-18T19:53:52.812Z",
+            "modified": "2024-01-18T20:36:32.588Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "67adda47-346b-41d3-913b-f3b3d7589f63",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
+            "name": "restore task type by id",
+            "url": "/taskTypes/2/restore",
+            "method": "PUT",
+            "sortNum": 87500,
+            "created": "2024-01-17T20:38:13.818Z",
+            "modified": "2024-01-17T20:40:14.393Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e48b636b-a7df-47e9-a006-4bfc21e815cd",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "b55df402-f1a8-45e0-b36a-aa08baf07591",
+            "name": "restore project by id",
+            "url": "/projects/0a67b74c-d979-42d1-891a-e7bf3471b83f/restore",
+            "method": "PUT",
+            "sortNum": 87500,
+            "created": "2024-01-18T19:53:52.813Z",
+            "modified": "2024-01-18T20:42:24.891Z",
             "headers": [],
             "params": [],
             "tests": []
