@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "chronos-api",
-    "dateExported": "2024-01-20T17:14:23.616Z",
+    "dateExported": "2024-01-20T19:59:18.682Z",
     "version": "1.1",
     "folders": [
         {
@@ -57,7 +57,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-01-11T21:14:29.865Z",
-            "modified": "2024-01-20T13:39:10.540Z",
+            "modified": "2024-01-20T19:56:39.081Z",
             "headers": [],
             "params": [],
             "body": {
@@ -173,12 +173,12 @@
             "method": "POST",
             "sortNum": 50000,
             "created": "2024-01-20T12:26:52.226Z",
-            "modified": "2024-01-20T13:35:23.839Z",
+            "modified": "2024-01-20T19:48:14.606Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\r\n  \"date\": \"2024-01-18T08:00:00Z\",\r\n  \"description\": \"Worked on bug fix\",\r\n  \"timeDurationInHours\": 0.5,\r\n  \"task\": \"4d335e59-b046-4e21-96f3-cb594f049c64\",\r\n  \"taskType\": 5\r\n}",
+                "raw": "{\n  \"date\": \"2024-01-18T08:00:00Z\",\n  \"description\": \"Implement the feature\",\n  \"timeDurationInHours\": 1.5,\n  \"owner\": \"c908a9cd-d08c-4e7f-a23f-c51662c43483\",\n  \"task\": \"4d335e59-b046-4e21-96f3-cb594f049c64\",\n  \"taskType\": 5\n}",
                 "form": []
             },
             "tests": []
@@ -286,11 +286,11 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
             "name": "get timeLog by id",
-            "url": "/timeLogs/dea819fd-0d95-4808-aa2d-5cfe25480877",
+            "url": "/timeLogs/b80d8f47-df2c-4baf-81d5-8b07a6b003b0",
             "method": "GET",
             "sortNum": 70000,
             "created": "2024-01-20T12:26:52.228Z",
-            "modified": "2024-01-20T13:10:31.120Z",
+            "modified": "2024-01-20T19:54:54.754Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -357,11 +357,11 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
             "name": "update timeLog by id",
-            "url": "/timeLogs/dea819fd-0d95-4808-aa2d-5cfe25480877",
+            "url": "/timeLogs/b80d8f47-df2c-4baf-81d5-8b07a6b003b0",
             "method": "PUT",
             "sortNum": 73750,
             "created": "2024-01-20T12:26:52.229Z",
-            "modified": "2024-01-20T13:13:42.490Z",
+            "modified": "2024-01-20T19:55:35.776Z",
             "headers": [],
             "params": [],
             "body": {
@@ -418,11 +418,11 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
             "name": "delete timeLog by id",
-            "url": "/timeLogs/dea819fd-0d95-4808-aa2d-5cfe25480877",
+            "url": "/timeLogs/b80d8f47-df2c-4baf-81d5-8b07a6b003b0",
             "method": "DELETE",
             "sortNum": 77500,
             "created": "2024-01-20T12:26:52.230Z",
-            "modified": "2024-01-20T13:10:57.051Z",
+            "modified": "2024-01-20T19:55:44.054Z",
             "headers": [],
             "params": [],
             "tests": []
