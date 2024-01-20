@@ -20,11 +20,12 @@ export const createTimeLog = async (
     !timeLogInfo.timeDurationInHours ||
     !timeLogInfo.date ||
     !timeLogInfo.task ||
-    !timeLogInfo.taskType
+    !timeLogInfo.taskType ||
+    !timeLogInfo.owner
   ) {
     return res.status(400).json({
       message:
-        "Please, provide date, duration, task id and task type for the timeDurationInHours.",
+        "Please, provide date, duration, task id, owner and task type for the timeDurationInHours.",
     });
   }
 

@@ -8,6 +8,7 @@ import {
 import { TaskEntity } from "./task.entity";
 import { TaskTypeEntity } from "./taskType.entity";
 import { BaseEntityWithUserColumns } from "./baseWithUserColumns.entity";
+import { UserEntity } from "./user.entity";
 
 @Entity({ name: "timeLogs" })
 export class TimeLogEntity extends BaseEntityWithUserColumns {
@@ -30,4 +31,8 @@ export class TimeLogEntity extends BaseEntityWithUserColumns {
 
   @Column({ type: "interval" })
   timeDurationInHours!: number;
+
+  @ManyToOne(() => UserEntity)
+  @JoinColumn({ name: "owner" })
+  owner!: UserEntity;
 }

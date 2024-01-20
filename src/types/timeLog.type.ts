@@ -4,6 +4,7 @@ export interface ICreateTimeLogRequestBody {
   timeDurationInHours: number;
   task: string;
   taskType: number;
+  owner: string;
   updatedBy?: string;
 }
 
@@ -13,5 +14,6 @@ export interface IUpdateTimeLogRequestBody {
   timeDurationInHours?: number;
   task?: string;
   taskType?: number;
+  owner?: string;
   updatedBy?: string;
 }

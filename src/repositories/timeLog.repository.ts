@@ -11,7 +11,7 @@ import UserRepository from "./user.repository";
 export const TimeLogRepository = AppDataSource.getRepository(
   TimeLogEntity
 ).extend({
-  relations: ["updatedBy", "task", "taskType"],
+  relations: ["owner", "updatedBy", "task", "taskType"],
 
   async getTimeLogs() {
     try {
@@ -40,8 +40,8 @@ export const TimeLogRepository = AppDataSource.getRepository(
     try {
       const timeLog = await this.createQueryBuilder("timeLog")
         .withDeleted()
-        .leftJoinAndSelect("timeLog.updatedBy", "updatedBy")
-        .where("timeLog.id = :id AND timeLog.updatedBy = :userId", {
+        .leftJoinAndSelect("timeLog.owner", "owner")
+        .where("timeLog.id = :id AND timeLog.owner = :userId", {
           id,
           userId,
         })
@@ -68,6 +68,11 @@ export const TimeLogRepository = AppDataSource.getRepository(
       task: timeLog?.task
         ? {
             id: timeLog?.task,
+          }
+        : undefined,
+      owner: timeLog?.owner
+        ? {
+            id: timeLog?.owner,
           }
         : undefined,
       updatedBy: timeLog?.updatedBy
