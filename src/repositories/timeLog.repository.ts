@@ -4,9 +4,7 @@ import {
 } from "./../types/timeLog.type";
 import { JwtPayload } from "jsonwebtoken";
 import { AppDataSource } from "../db/conf/appDataSource";
-import { IsNull, Not } from "typeorm";
 import { TimeLogEntity } from "../db/entities/timeLog.entity";
-import UserRepository from "./user.repository";
 
 export const TimeLogRepository = AppDataSource.getRepository(
   TimeLogEntity

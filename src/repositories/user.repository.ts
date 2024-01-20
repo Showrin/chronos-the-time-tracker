@@ -1,8 +1,11 @@
+import { IUpdateUserRequestBody } from "./../types/user.type";
 import { UserEntity } from "../db/entities/user.entity";
 import { AppDataSource } from "../db/conf/appDataSource";
 import { ISignupRequest } from "../types/auth.type";
 
-const UserRepository = AppDataSource.getRepository(UserEntity).extend({
+export const UserRepository = AppDataSource.getRepository(UserEntity).extend({
+  relations: ["managedBy"],
+
   async findByEmail(
     email: string,
     options: any = {}
@@ -28,6 +31,58 @@ const UserRepository = AppDataSource.getRepository(UserEntity).extend({
 
     return newUser;
   },
-});
 
-export default UserRepository;
+  async getUsers() {
+    try {
+      const users = await this.find({
+        relations: this.relations,
+      });
+      return users;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  async findUserById(id: string) {
+    try {
+      const user = await this.findOne({
+        where: { id },
+        relations: this.relations,
+      });
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  buildUserOptions(user: IUpdateUserRequestBody) {
+    return {
+      email: user?.email || undefined,
+      firstName: user?.firstName || undefined,
+      lastName: user?.lastName || undefined,
+      role: user?.role || undefined,
+      managedBy: user?.managedBy
+        ? {
+            id: user?.managedBy,
+          }
+        : undefined,
+    };
+  },
+
+  async updateUserById(id: string, user: IUpdateUserRequestBody) {
+    try {
+      const userOptions = this.buildUserOptions(user);
+      const existingUser = await this.findUserById(id);
+
+      if (!existingUser) {
+        return null;
+      }
+
+      const result = await this.update({ id }, userOptions);
+
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
+});

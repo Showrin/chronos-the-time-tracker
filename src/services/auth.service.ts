@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
 import dotenv from "dotenv";
-import UserRepository from "../repositories/user.repository";
+import { UserRepository } from "../repositories/user.repository";
 import { ISignupRequest } from "../types/auth.type";
 import { UserEntity } from "../db/entities/user.entity";
 import { RoleEnum } from "../enums/role.enum";

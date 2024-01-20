@@ -6,10 +6,12 @@ import { taskTypeRouter } from "./taskType.route";
 import { projectRouter } from "./project.route";
 import { taskRouter } from "./task.route";
 import { timeLogRouter } from "./timeLog.route";
+import { userRouter } from "./user.route";
 
 const baseRouter = express.Router();
 
 baseRouter.use("/auth", authRouter);
+baseRouter.use("/users", authenticateJWT, userRouter);
 baseRouter.use("/roles", authenticateJWT, roleRouter);
 baseRouter.use("/taskTypes", authenticateJWT, taskTypeRouter);
 baseRouter.use("/projects", authenticateJWT, projectRouter);

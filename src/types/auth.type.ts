@@ -1,3 +1,4 @@
+import { UserEntity } from "../db/entities/user.entity";
 import { RoleEnum } from "../enums/role.enum";
 
 export interface ISignupRequest {
@@ -29,6 +30,7 @@ export interface INewUserResponse {
     lastName: string;
     role: RoleEnum;
     fullName: string;
+    managedBy: UserEntity;
     deletedAt: Date | null;
     updatedAt: Date;
   };

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { TimeLogRepository } from "../repositories/timeLog.repository";
+import { UserEntity } from "../db/entities/user.entity";
 
 export const checkTimeLogAuthority = async (
   req: Request,

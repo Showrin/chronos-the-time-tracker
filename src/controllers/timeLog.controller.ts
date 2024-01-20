@@ -25,7 +25,7 @@ export const createTimeLog = async (
   ) {
     return res.status(400).json({
       message:
-        "Please, provide date, duration, task id, owner and task type for the timeDurationInHours.",
+        "Please, provide date, timeDurationInHours, task id, owner and task type for the time log.",
     });
   }
 

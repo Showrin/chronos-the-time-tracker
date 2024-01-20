@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { ICanAccessParams } from "../types/auth.type";
 import { RoleEnum } from "../enums/role.enum";
-import UserRepository from "../repositories/user.repository";
+import { UserRepository } from "../repositories/user.repository";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 

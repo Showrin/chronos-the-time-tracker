@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { BaseEntity } from "./base.entity";
 import { RoleEnum } from "../../enums/role.enum";
 
@@ -21,6 +27,10 @@ export class UserEntity extends BaseEntity {
 
   @Column({ type: "enum", enum: RoleEnum, default: RoleEnum.ENGINEER })
   role!: RoleEnum;
+
+  @ManyToOne(() => UserEntity)
+  @JoinColumn({ name: "managedBy" })
+  managedBy!: UserEntity;
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
