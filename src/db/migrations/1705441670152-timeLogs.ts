@@ -32,8 +32,8 @@ export class TimeLogs1705441670152 implements MigrationInterface {
             type: "date",
           },
           {
-            name: "timeDuration",
-            type: "interval",
+            name: "timeDurationInHours",
+            type: "float",
           },
           {
             name: "updatedBy",

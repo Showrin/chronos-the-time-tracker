@@ -29,5 +29,5 @@ export class TimeLogEntity extends BaseEntityWithUserColumns {
   date!: Date;
 
   @Column({ type: "interval" })
-  timeDuration!: string;
+  timeDurationInHours!: number;
 }
