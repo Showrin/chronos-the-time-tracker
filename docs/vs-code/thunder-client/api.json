@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "chronos-api",
-    "dateExported": "2024-01-18T20:58:41.954Z",
+    "dateExported": "2024-01-20T17:14:23.616Z",
     "version": "1.1",
     "folders": [
         {
@@ -31,6 +31,20 @@
             "containerId": "",
             "created": "2024-01-18T19:53:52.808Z",
             "sortNum": 40000
+        },
+        {
+            "_id": "c7a64917-ff59-4fc5-b967-d71057fe512b",
+            "name": "tasks",
+            "containerId": "",
+            "created": "2024-01-20T08:27:56.912Z",
+            "sortNum": 50000
+        },
+        {
+            "_id": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
+            "name": "timeLogs",
+            "containerId": "",
+            "created": "2024-01-20T12:26:52.226Z",
+            "sortNum": 60000
         }
     ],
     "requests": [
@@ -43,12 +57,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-01-11T21:14:29.865Z",
-            "modified": "2024-01-18T20:37:35.283Z",
+            "modified": "2024-01-20T13:39:10.540Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"admin@gmail.com\",\n  \"password\": \"1234\"\n}",
+                "raw": "{\n  \"email\": \"showrin@gmail.com\",\n  \"password\": \"1234\"\n}",
                 "form": []
             },
             "tests": [
@@ -121,12 +135,50 @@
             "method": "POST",
             "sortNum": 50000,
             "created": "2024-01-18T19:53:52.808Z",
-            "modified": "2024-01-18T20:21:31.883Z",
+            "modified": "2024-01-20T08:33:01.241Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Innovation Within\",\n  \"startedAt\": \"2023-01-01T00:00:00Z\",\n  \"endedAt\": \"2023-12-31T23:59:59Z\",\n  \"mode\": \"fte\",\n  \"devManager\": \"b79ee7b5-9c1a-4b9a-b31c-267fe60ce2e6\",\n  \"projectManager\": \"ce99dc71-62c4-4fef-b1db-7fa5aa8999f2\",\n  \"devLead\": \"81d5e6a0-7749-40ac-8abc-23f1d5818618\",\n  \"techLead\": \"bb68481f-3aa6-448a-b843-80b0d75a92cd\",\n  \"projectLead\": \"1f056847-b222-42bd-bfd9-bf6f3e9ff370\",\n  \"updatedBy\": \"Admin\"\n}",
+                "raw": "{\n  \"name\": \"Innovation Within\",\n  \"startedAt\": \"2023-01-01T00:00:00Z\",\n  \"endedAt\": \"2023-12-31T23:59:59Z\",\n  \"mode\": \"fte\",\n  \"devManager\": \"b79ee7b5-9c1a-4b9a-b31c-267fe60ce2e6\",\n  \"projectManager\": \"ce99dc71-62c4-4fef-b1db-7fa5aa8999f2\",\n  \"devLead\": \"81d5e6a0-7749-40ac-8abc-23f1d5818618\",\n  \"techLead\": \"bb68481f-3aa6-448a-b843-80b0d75a92cd\",\n  \"projectLead\": \"1f056847-b222-42bd-bfd9-bf6f3e9ff370\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f897295f-ab4a-4d28-ae69-6049af21a989",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "c7a64917-ff59-4fc5-b967-d71057fe512b",
+            "name": "create a task",
+            "url": "/tasks",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-01-20T08:27:56.912Z",
+            "modified": "2024-01-20T08:35:50.499Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Fix skinny canvas issue\",\n  \"project\": \"0a67b74c-d979-42d1-891a-e7bf3471b83f\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e98bd5d7-f795-4cf2-83fc-755ef6120c6c",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
+            "name": "create a timeLogs",
+            "url": "/timeLogs",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-01-20T12:26:52.226Z",
+            "modified": "2024-01-20T13:35:23.839Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"date\": \"2024-01-18T08:00:00Z\",\r\n  \"description\": \"Worked on bug fix\",\r\n  \"timeDurationInHours\": 0.5,\r\n  \"task\": \"4d335e59-b046-4e21-96f3-cb594f049c64\",\r\n  \"taskType\": 5\r\n}",
                 "form": []
             },
             "tests": []
@@ -160,6 +212,34 @@
             "tests": []
         },
         {
+            "_id": "0c822964-9fd6-463b-bd01-f2c87a4f5844",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "c7a64917-ff59-4fc5-b967-d71057fe512b",
+            "name": "get all tasks",
+            "url": "/tasks",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-01-20T08:27:56.913Z",
+            "modified": "2024-01-20T08:37:22.875Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f4d2ca1a-9e53-49f4-8fa1-4cad6a6de62f",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
+            "name": "get all timeLogs",
+            "url": "/timeLogs",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-01-20T12:26:52.227Z",
+            "modified": "2024-01-20T12:27:43.762Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
             "_id": "4eac97ae-60db-4d50-a24c-3f544c16f13f",
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
@@ -183,6 +263,34 @@
             "sortNum": 70000,
             "created": "2024-01-18T19:53:52.810Z",
             "modified": "2024-01-18T20:32:00.651Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fdf85339-c856-4911-8275-4248f9c1d17b",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "c7a64917-ff59-4fc5-b967-d71057fe512b",
+            "name": "get task by id",
+            "url": "/tasks/4d335e59-b046-4e21-96f3-cb594f049c64",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-01-20T08:27:56.914Z",
+            "modified": "2024-01-20T08:37:55.727Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b315f570-ec18-497f-9104-12b2366470e0",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
+            "name": "get timeLog by id",
+            "url": "/timeLogs/dea819fd-0d95-4808-aa2d-5cfe25480877",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-01-20T12:26:52.228Z",
+            "modified": "2024-01-20T13:10:31.120Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -226,6 +334,44 @@
             "tests": []
         },
         {
+            "_id": "944043f0-72fd-4d7a-8bee-0ebca2e606bf",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "c7a64917-ff59-4fc5-b967-d71057fe512b",
+            "name": "update task by id",
+            "url": "/tasks/4d335e59-b046-4e21-96f3-cb594f049c64",
+            "method": "PUT",
+            "sortNum": 73750,
+            "created": "2024-01-20T08:27:56.915Z",
+            "modified": "2024-01-20T08:38:53.729Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Fix skinny canvas issues\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "65f23db7-958a-4e86-b43d-972fd5bf899b",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
+            "name": "update timeLog by id",
+            "url": "/timeLogs/dea819fd-0d95-4808-aa2d-5cfe25480877",
+            "method": "PUT",
+            "sortNum": 73750,
+            "created": "2024-01-20T12:26:52.229Z",
+            "modified": "2024-01-20T13:13:42.490Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"description\": \"Work on the fix\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
             "_id": "802af7d6-0abd-4a04-87f7-71cad17f0100",
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
@@ -254,6 +400,34 @@
             "tests": []
         },
         {
+            "_id": "252ca78d-c4cf-4333-aafa-f091c4d9cda1",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "c7a64917-ff59-4fc5-b967-d71057fe512b",
+            "name": "delete task by id",
+            "url": "/tasks/4d335e59-b046-4e21-96f3-cb594f049c64",
+            "method": "DELETE",
+            "sortNum": 77500,
+            "created": "2024-01-20T08:27:56.916Z",
+            "modified": "2024-01-20T08:39:10.772Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6aad24a0-f46e-4a8b-93e6-35af40d7f69c",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
+            "name": "delete timeLog by id",
+            "url": "/timeLogs/dea819fd-0d95-4808-aa2d-5cfe25480877",
+            "method": "DELETE",
+            "sortNum": 77500,
+            "created": "2024-01-20T12:26:52.230Z",
+            "modified": "2024-01-20T13:10:57.051Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
             "_id": "67adda47-346b-41d3-913b-f3b3d7589f63",
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
@@ -277,6 +451,20 @@
             "sortNum": 87500,
             "created": "2024-01-18T19:53:52.813Z",
             "modified": "2024-01-18T20:42:24.891Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "3cb7b95d-4a45-4e67-ba8c-921bae16712d",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "c7a64917-ff59-4fc5-b967-d71057fe512b",
+            "name": "restore task by id",
+            "url": "/tasks/4d335e59-b046-4e21-96f3-cb594f049c64/restore",
+            "method": "PUT",
+            "sortNum": 87500,
+            "created": "2024-01-20T08:27:56.917Z",
+            "modified": "2024-01-20T08:40:14.345Z",
             "headers": [],
             "params": [],
             "tests": []
