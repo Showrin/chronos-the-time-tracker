@@ -13,7 +13,12 @@ userRouter.get(
   UserController.findSubordinates
 );
 
-userRouter.put("/:userId", checkUserAuthority, UserController.updateUserById);
+userRouter.put(
+  "/:userId",
+  canAccess("*"),
+  checkUserAuthority,
+  UserController.updateUserById
+);
 
 userRouter.put(
   "/:userId/change-role",

@@ -15,11 +15,13 @@ timeLogRouter.post("/", canAccess("*"), TimeLogController.createTimeLog);
 
 timeLogRouter.put(
   "/:timeLogId",
+  canAccess("*"),
   checkTimeLogAuthority,
   TimeLogController.updateTimeLogById
 );
 timeLogRouter.delete(
   "/:timeLogId",
+  canAccess("*"),
   checkTimeLogAuthority,
   TimeLogController.deleteTimeLogById
 );
