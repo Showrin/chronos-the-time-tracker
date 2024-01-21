@@ -4,7 +4,7 @@ import { canAccess } from "../middlewares/auth.middleware";
 
 const projectRouter = express.Router();
 
-projectRouter.get("/", canAccess("*"), ProjectController.getAllProjects);
+projectRouter.get("/", canAccess("*"), ProjectController.getProjects);
 projectRouter.get(
   "/:projectId",
   canAccess("*"),

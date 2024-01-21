@@ -5,7 +5,7 @@ import { checkTimeLogAuthority } from "../middlewares/timeLog.middleware";
 
 const timeLogRouter = express.Router();
 
-timeLogRouter.get("/", canAccess("*"), TimeLogController.getAllTimeLogs);
+timeLogRouter.get("/", canAccess("*"), TimeLogController.getTimeLogs);
 timeLogRouter.get(
   "/:timeLogId",
   canAccess("*"),

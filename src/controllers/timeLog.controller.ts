@@ -7,6 +7,7 @@ import {
 import { TimeLogRepository } from "../repositories/timeLog.repository";
 import { JwtPayload } from "jsonwebtoken";
 import { UserEntity } from "../db/entities/user.entity";
+import { getPaginationConfig } from "../services/paginate.service";
 
 export const createTimeLog = async (
   req: Request,
@@ -48,18 +49,22 @@ export const createTimeLog = async (
   }
 };
 
-export const getAllTimeLogs = async (
+export const getTimeLogs = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   try {
-    // @ts-ignore
-    const user: UserEntity = req?.user;
-    const timeLogs = await TimeLogRepository.getTimeLogs();
+    const { skip, take } = getPaginationConfig(req);
+    const [timeLogs, totalCount] = await TimeLogRepository.getTimeLogs({
+      skip,
+      take,
+    });
 
-    return res
-      .status(200)
-      .json({ message: "TimeLogs fetched successfully.", timeLogs });
+    return res.status(200).json({
+      message: "TimeLogs fetched successfully.",
+      totalCount,
+      timeLogs,
+    });
   } catch (error) {
     console.error(error);
 

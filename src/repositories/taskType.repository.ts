@@ -1,4 +1,5 @@
 import { JwtPayload } from "jsonwebtoken";
+import { FindManyOptions } from "typeorm";
 import {
   IUpdateTaskTypeRequestBody,
   ICreateTaskTypeRequestBody,
@@ -10,9 +11,12 @@ import { IsNull, Not } from "typeorm";
 export const TaskTypeRepository = AppDataSource.getRepository(
   TaskTypeEntity
 ).extend({
-  async getTaskTypes() {
+  async getTaskTypes(options: FindManyOptions<TaskTypeEntity>) {
     try {
-      const taskTypes = await this.find({ relations: ["updatedBy"] });
+      const taskTypes = await this.findAndCount({
+        relations: ["updatedBy"],
+        ...options,
+      });
       return taskTypes;
     } catch (error) {
       throw error;

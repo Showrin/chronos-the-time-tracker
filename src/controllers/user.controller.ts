@@ -6,17 +6,22 @@ import {
   IUpdateUserRequestBody,
 } from "../types/user.type";
 import { UserRepository } from "../repositories/user.repository";
+import { getPaginationConfig } from "../services/paginate.service";
 
 export const getAllUsers = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   try {
-    const users = await UserRepository.getUsers();
+    const { skip, take } = getPaginationConfig(req);
+    const [users, totalCount] = await UserRepository.getUsers({
+      skip,
+      take,
+    });
 
     return res
       .status(200)
-      .json({ message: "Users fetched successfully.", users });
+      .json({ message: "Users fetched successfully.", totalCount, users });
   } catch (error) {
     console.error(error);
 

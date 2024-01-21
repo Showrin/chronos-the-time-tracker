@@ -6,6 +6,7 @@ import {
 } from "../types/taskType.type";
 import { TaskTypeRepository } from "../repositories/taskType.repository";
 import { JwtPayload } from "jsonwebtoken";
+import { getPaginationConfig } from "../services/paginate.service";
 
 export const createTaskType = async (
   req: Request,
@@ -57,16 +58,22 @@ export const createTaskType = async (
   }
 };
 
-export const getAllTaskTypes = async (
+export const getTaskTypes = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   try {
-    const taskTypes = await TaskTypeRepository.getTaskTypes();
+    const { skip, take } = getPaginationConfig(req);
+    const [taskTypes, totalCount] = await TaskTypeRepository.getTaskTypes({
+      skip,
+      take,
+    });
 
-    return res
-      .status(200)
-      .json({ message: "Task types fetched successfully.", taskTypes });
+    return res.status(200).json({
+      message: "Task types fetched successfully.",
+      totalCount,
+      taskTypes,
+    });
   } catch (error) {
     console.error(error);
 

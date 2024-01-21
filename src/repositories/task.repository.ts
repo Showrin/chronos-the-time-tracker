@@ -3,6 +3,7 @@ import {
   IUpdateTaskRequestBody,
 } from "./../types/task.type";
 import { JwtPayload } from "jsonwebtoken";
+import { FindManyOptions } from "typeorm";
 import { AppDataSource } from "../db/conf/appDataSource";
 import { IsNull, Not } from "typeorm";
 import { TaskEntity } from "../db/entities/task.entity";
@@ -10,10 +11,11 @@ import { TaskEntity } from "../db/entities/task.entity";
 export const TaskRepository = AppDataSource.getRepository(TaskEntity).extend({
   relations: ["project", "updatedBy"],
 
-  async getTasks() {
+  async getTasks(options: FindManyOptions<TaskEntity>) {
     try {
-      const tasks = await this.find({
+      const tasks = await this.findAndCount({
         relations: this.relations,
+        ...options,
       });
       return tasks;
     } catch (error) {

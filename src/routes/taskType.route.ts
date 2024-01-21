@@ -4,7 +4,7 @@ import { canAccess } from "../middlewares/auth.middleware";
 
 const taskTypeRouter = express.Router();
 
-taskTypeRouter.get("/", canAccess("*"), TaskTypeController.getAllTaskTypes);
+taskTypeRouter.get("/", canAccess("*"), TaskTypeController.getTaskTypes);
 taskTypeRouter.get(
   "/:taskTypeId",
   canAccess("*"),

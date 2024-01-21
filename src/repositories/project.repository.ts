@@ -3,6 +3,7 @@ import {
   IUpdateProjectRequestBody,
 } from "./../types/project.type";
 import { JwtPayload } from "jsonwebtoken";
+import { FindManyOptions } from "typeorm";
 import { AppDataSource } from "../db/conf/appDataSource";
 import { IsNull, Not } from "typeorm";
 import { ProjectEntity } from "../db/entities/project.entity";
@@ -19,10 +20,11 @@ export const ProjectRepository = AppDataSource.getRepository(
     "projectLead",
   ],
 
-  async getProjects() {
+  async getProjects(options: FindManyOptions<ProjectEntity>) {
     try {
-      const projects = await this.find({
+      const projects = await this.findAndCount({
         relations: this.relations,
+        ...options,
       });
       return projects;
     } catch (error) {

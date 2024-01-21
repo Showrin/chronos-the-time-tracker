@@ -1,3 +1,4 @@
+import { FindManyOptions } from "typeorm";
 import { IUpdateUserRequestBody } from "./../types/user.type";
 import { UserEntity } from "../db/entities/user.entity";
 import { AppDataSource } from "../db/conf/appDataSource";
@@ -32,10 +33,11 @@ export const UserRepository = AppDataSource.getRepository(UserEntity).extend({
     return newUser;
   },
 
-  async getUsers() {
+  async getUsers(options: FindManyOptions<UserEntity>) {
     try {
-      const users = await this.find({
+      const users = await this.findAndCount({
         relations: this.relations,
+        ...options,
       });
       return users;
     } catch (error) {

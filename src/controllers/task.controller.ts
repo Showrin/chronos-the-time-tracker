@@ -7,6 +7,7 @@ import {
 import { TaskRepository } from "../repositories/task.repository";
 import { JwtPayload } from "jsonwebtoken";
 import { UserEntity } from "../db/entities/user.entity";
+import { getPaginationConfig } from "../services/paginate.service";
 
 export const createTask = async (
   req: Request,
@@ -58,16 +59,20 @@ export const createTask = async (
   }
 };
 
-export const getAllTasks = async (
+export const getTasks = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   try {
-    const tasks = await TaskRepository.getTasks();
+    const { skip, take } = getPaginationConfig(req);
+    const [tasks, totalCount] = await TaskRepository.getTasks({
+      skip,
+      take,
+    });
 
     return res
       .status(200)
-      .json({ message: "Tasks fetched successfully.", tasks });
+      .json({ message: "Tasks fetched successfully.", totalCount, tasks });
   } catch (error) {
     console.error(error);
 

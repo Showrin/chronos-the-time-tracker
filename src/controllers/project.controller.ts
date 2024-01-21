@@ -7,6 +7,7 @@ import {
 import { ProjectRepository } from "../repositories/project.repository";
 import { JwtPayload } from "jsonwebtoken";
 import { UserEntity } from "../db/entities/user.entity";
+import { getPaginationConfig } from "../services/paginate.service";
 
 export const createProject = async (
   req: Request,
@@ -57,16 +58,22 @@ export const createProject = async (
   }
 };
 
-export const getAllProjects = async (
+export const getProjects = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   try {
-    const projects = await ProjectRepository.getProjects();
+    const { skip, take } = getPaginationConfig(req);
+    const [projects, totalCount] = await ProjectRepository.getProjects({
+      skip,
+      take,
+    });
 
-    return res
-      .status(200)
-      .json({ message: "Projects fetched successfully.", projects });
+    return res.status(200).json({
+      message: "Projects fetched successfully.",
+      totalCount,
+      projects,
+    });
   } catch (error) {
     console.error(error);
 

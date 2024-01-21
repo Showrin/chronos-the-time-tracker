@@ -1,3 +1,4 @@
+import { FindManyOptions } from "typeorm";
 import {
   ICreateTimeLogRequestBody,
   IUpdateTimeLogRequestBody,
@@ -11,10 +12,11 @@ export const TimeLogRepository = AppDataSource.getRepository(
 ).extend({
   relations: ["owner", "updatedBy", "task", "taskType"],
 
-  async getTimeLogs() {
+  async getTimeLogs(options: FindManyOptions<TimeLogEntity>) {
     try {
-      const timeLogs = await this.find({
+      const timeLogs = await this.findAndCount({
         relations: this.relations,
+        ...options,
       });
       return timeLogs;
     } catch (error) {
