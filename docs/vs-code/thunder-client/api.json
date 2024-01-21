@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "chronos-api",
-    "dateExported": "2024-01-20T19:59:18.682Z",
+    "dateExported": "2024-01-21T19:53:30.378Z",
     "version": "1.1",
     "folders": [
         {
@@ -10,6 +10,13 @@
             "containerId": "",
             "created": "2024-01-11T21:11:43.561Z",
             "sortNum": 10000
+        },
+        {
+            "_id": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "users",
+            "containerId": "",
+            "created": "2024-01-20T20:45:11.358Z",
+            "sortNum": 15000
         },
         {
             "_id": "dee403df-6fdd-4cf7-a8a9-c54301f24ef3",
@@ -57,7 +64,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-01-11T21:14:29.865Z",
-            "modified": "2024-01-20T19:56:39.081Z",
+            "modified": "2024-01-20T21:58:46.717Z",
             "headers": [],
             "params": [],
             "body": {
@@ -240,6 +247,20 @@
             "tests": []
         },
         {
+            "_id": "ce6bcf92-3f3b-4676-87ba-25027aa9ae7d",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "get all users",
+            "url": "/users",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-01-20T20:45:11.359Z",
+            "modified": "2024-01-20T20:45:50.607Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
             "_id": "4eac97ae-60db-4d50-a24c-3f544c16f13f",
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
@@ -291,6 +312,34 @@
             "sortNum": 70000,
             "created": "2024-01-20T12:26:52.228Z",
             "modified": "2024-01-20T19:54:54.754Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f8906ad0-f1dd-4854-b3ee-f0c1295c5d2e",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "get user  by id",
+            "url": "/users/c908a9cd-d08c-4e7f-a23f-c51662c43483",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-01-20T20:45:11.360Z",
+            "modified": "2024-01-20T20:46:40.400Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0a0b1b4e-b170-45d4-8e1b-6a379f1ddf54",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "get subordinates",
+            "url": "/users/8f5f3d45-4678-40b9-b555-51491353736b/subordinates",
+            "method": "GET",
+            "sortNum": 71875,
+            "created": "2024-01-20T21:32:06.476Z",
+            "modified": "2024-01-21T16:28:05.101Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -372,6 +421,63 @@
             "tests": []
         },
         {
+            "_id": "6dd4efd0-8d19-4b8f-9b84-2ce82248c68b",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "update user by id",
+            "url": "/users/c908a9cd-d08c-4e7f-a23f-c51662c43483",
+            "method": "PUT",
+            "sortNum": 73750,
+            "created": "2024-01-20T20:45:11.361Z",
+            "modified": "2024-01-20T21:11:20.884Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \"firstName\": \"Showrin\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "87cf0952-5560-4465-9f72-bb171a05b8ef",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "change manager of a user",
+            "url": "/users/c908a9cd-d08c-4e7f-a23f-c51662c43483/change-manager",
+            "method": "PUT",
+            "sortNum": 75625,
+            "created": "2024-01-20T21:06:24.997Z",
+            "modified": "2024-01-20T21:11:32.847Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"managedBy\": \"81d5e6a0-7749-40ac-8abc-23f1d5818618\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "16de4b40-f907-4297-b624-1f8c503f550b",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "change manager of a user Copy",
+            "url": "/users/c908a9cd-d08c-4e7f-a23f-c51662c43483/change-role",
+            "method": "PUT",
+            "sortNum": 76562.5,
+            "created": "2024-01-20T21:07:33.750Z",
+            "modified": "2024-01-20T21:14:34.364Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"role\": \"Engineer\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
             "_id": "802af7d6-0abd-4a04-87f7-71cad17f0100",
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
@@ -428,6 +534,20 @@
             "tests": []
         },
         {
+            "_id": "34dd7cd4-6735-4abb-9fc9-30b118cb0a2d",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "delete timeLog by id",
+            "url": "/users/c908a9cd-d08c-4e7f-a23f-c51662c43483",
+            "method": "DELETE",
+            "sortNum": 77500,
+            "created": "2024-01-20T20:45:11.362Z",
+            "modified": "2024-01-20T21:15:08.927Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
             "_id": "67adda47-346b-41d3-913b-f3b3d7589f63",
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
@@ -465,6 +585,20 @@
             "sortNum": 87500,
             "created": "2024-01-20T08:27:56.917Z",
             "modified": "2024-01-20T08:40:14.345Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "94e49453-ead0-42b5-ad47-a411a7372dd1",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
+            "name": "restore user by id",
+            "url": "/users/c908a9cd-d08c-4e7f-a23f-c51662c43483/restore",
+            "method": "PUT",
+            "sortNum": 87500,
+            "created": "2024-01-20T21:05:09.016Z",
+            "modified": "2024-01-20T21:11:42.276Z",
             "headers": [],
             "params": [],
             "tests": []
