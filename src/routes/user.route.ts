@@ -7,6 +7,11 @@ const userRouter = express.Router();
 
 userRouter.get("/", canAccess("*"), UserController.getAllUsers);
 userRouter.get("/:userId", canAccess("*"), UserController.findUserById);
+userRouter.get(
+  "/:userId/subordinates",
+  canAccess("*"),
+  UserController.findSubordinates
+);
 
 userRouter.put("/:userId", checkUserAuthority, UserController.updateUserById);
 

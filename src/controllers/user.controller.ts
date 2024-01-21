@@ -50,6 +50,28 @@ export const findUserById = async (
   }
 };
 
+export const findSubordinates = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const userId = req.params?.userId;
+    const subordinates = await UserRepository.getSubordinates(userId);
+
+    console.log(userId);
+
+    return res
+      .status(200)
+      .json({ message: "Subordinates fetched successfully.", subordinates });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: errorMessage.InternalServerError(),
+    });
+  }
+};
+
 export const updateUserById = async (
   req: Request,
   res: Response

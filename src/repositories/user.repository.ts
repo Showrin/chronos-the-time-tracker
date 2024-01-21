@@ -85,4 +85,19 @@ export const UserRepository = AppDataSource.getRepository(UserEntity).extend({
       throw error;
     }
   },
+
+  async getSubordinates(userId: string) {
+    const query = `
+    WITH RECURSIVE user_hierarchy AS (
+      SELECT *, 1 as "hirerchyLevel" FROM users WHERE "managedBy" = $1
+      UNION
+      SELECT u.*, h."hirerchyLevel" + 1 as "hirerchyLevel" FROM users u
+      JOIN user_hierarchy h ON u."managedBy" = h.id
+    )
+    SELECT * FROM user_hierarchy;
+  `;
+
+    const hierarchy = await this.query(query, [userId]);
+    return hierarchy;
+  },
 });
