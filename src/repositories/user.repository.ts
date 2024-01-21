@@ -91,9 +91,14 @@ export const UserRepository = AppDataSource.getRepository(UserEntity).extend({
   async getSubordinates(userId: string) {
     const query = `
     WITH RECURSIVE user_hierarchy AS (
-      SELECT *, 1 as "hirerchyLevel" FROM users WHERE "managedBy" = $1
+      SELECT id, email, "firstName", "lastName", role, "managedBy", "updatedAt", "deletedAt", 1 as "hirerchyLevel" 
+      FROM users 
+      WHERE "managedBy" = $1
+      
       UNION
-      SELECT u.*, h."hirerchyLevel" + 1 as "hirerchyLevel" FROM users u
+      
+      SELECT u.id, u.email, u."firstName", u."lastName", u.role, u."managedBy", u."updatedAt", u."deletedAt", h."hirerchyLevel" + 1 as "hirerchyLevel" 
+      FROM users u
       JOIN user_hierarchy h ON u."managedBy" = h.id
     )
     SELECT * FROM user_hierarchy;
