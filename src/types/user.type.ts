@@ -1,3 +1,4 @@
+import { FindOperator } from "typeorm";
 import { RoleEnum } from "../enums/role.enum";
 
 export interface IUpdateUserRequestBody {
@@ -14,4 +15,11 @@ export interface IUpdateManagerRequestBody {
 
 export interface IUpdateRoleRequestBody {
   role: RoleEnum;
+}
+
+export interface IUserFilter {
+  firstName?: FindOperator<string>;
+  email?: FindOperator<string>;
+  role?: string;
+  managedBy?: { id: string };
 }

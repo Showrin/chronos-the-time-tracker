@@ -8,6 +8,9 @@ import { TimeLogRepository } from "../repositories/timeLog.repository";
 import { JwtPayload } from "jsonwebtoken";
 import { UserEntity } from "../db/entities/user.entity";
 import { getPaginationConfig } from "../services/paginate.service";
+import { getTimeLogFilter } from "../filters/timeLog.filter";
+import { FindOptionsWhere } from "typeorm";
+import { TimeLogEntity } from "../db/entities/timeLog.entity";
 
 export const createTimeLog = async (
   req: Request,
@@ -58,6 +61,7 @@ export const getTimeLogs = async (
     const [timeLogs, totalCount] = await TimeLogRepository.getTimeLogs({
       skip,
       take,
+      where: getTimeLogFilter(req) as FindOptionsWhere<TimeLogEntity>,
     });
 
     return res.status(200).json({

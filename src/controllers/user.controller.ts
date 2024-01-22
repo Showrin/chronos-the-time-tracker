@@ -7,6 +7,9 @@ import {
 } from "../types/user.type";
 import { UserRepository } from "../repositories/user.repository";
 import { getPaginationConfig } from "../services/paginate.service";
+import { getUserFilter } from "../filters/user.filter";
+import { FindOptionsWhere } from "typeorm";
+import { UserEntity } from "../db/entities/user.entity";
 
 export const getAllUsers = async (
   req: Request,
@@ -17,6 +20,7 @@ export const getAllUsers = async (
     const [users, totalCount] = await UserRepository.getUsers({
       skip,
       take,
+      where: getUserFilter(req) as FindOptionsWhere<UserEntity>,
     });
 
     return res

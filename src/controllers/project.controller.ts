@@ -8,6 +8,9 @@ import { ProjectRepository } from "../repositories/project.repository";
 import { JwtPayload } from "jsonwebtoken";
 import { UserEntity } from "../db/entities/user.entity";
 import { getPaginationConfig } from "../services/paginate.service";
+import { getProjectFilter } from "../filters/project.filter";
+import { FindOptionsWhere } from "typeorm";
+import { ProjectEntity } from "../db/entities/project.entity";
 
 export const createProject = async (
   req: Request,
@@ -67,6 +70,7 @@ export const getProjects = async (
     const [projects, totalCount] = await ProjectRepository.getProjects({
       skip,
       take,
+      where: getProjectFilter(req) as FindOptionsWhere<ProjectEntity>,
     });
 
     return res.status(200).json({

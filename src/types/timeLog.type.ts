@@ -1,3 +1,5 @@
+import { FindOperator } from "typeorm";
+
 export interface ICreateTimeLogRequestBody {
   date: Date;
   description?: string;
@@ -16,4 +18,11 @@ export interface IUpdateTimeLogRequestBody {
   taskType?: number;
   owner?: string;
   updatedBy?: string;
+}
+
+export interface ITimeLogFilter {
+  task?: { id: string };
+  taskType?: { id: string };
+  date?: FindOperator<Date>;
+  owner?: { id: string };
 }

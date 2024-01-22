@@ -8,6 +8,7 @@ import { TaskRepository } from "../repositories/task.repository";
 import { JwtPayload } from "jsonwebtoken";
 import { UserEntity } from "../db/entities/user.entity";
 import { getPaginationConfig } from "../services/paginate.service";
+import { getTaskFilter } from "../filters/task.filter";
 
 export const createTask = async (
   req: Request,
@@ -68,6 +69,7 @@ export const getTasks = async (
     const [tasks, totalCount] = await TaskRepository.getTasks({
       skip,
       take,
+      where: getTaskFilter(req),
     });
 
     return res

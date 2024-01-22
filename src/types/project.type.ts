@@ -1,3 +1,4 @@
+import { FindOperator } from "typeorm";
 import { ProjectModeEnum } from "../enums/projectMode.enum";
 
 export interface ICreateProjectRequestBody {
@@ -24,4 +25,16 @@ export interface IUpdateProjectRequestBody {
   techLead?: string;
   projectLead?: string;
   updatedBy?: string;
+}
+
+export interface IProjectFilter {
+  name?: FindOperator<string>;
+  startedAt?: FindOperator<Date>;
+  endedAt?: FindOperator<Date>;
+  mode?: ProjectModeEnum;
+  devManager?: { id: string };
+  projectManager?: { id: string };
+  devLead?: { id: string };
+  techLead?: { id: string };
+  projectLead?: { id: string };
 }

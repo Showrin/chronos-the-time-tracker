@@ -1,3 +1,4 @@
+import { FindOperator } from "typeorm";
 import { UserEntity } from "../db/entities/user.entity";
 
 export interface ICreateTaskTypeRequestBody {
@@ -8,4 +9,8 @@ export interface ICreateTaskTypeRequestBody {
 export interface IUpdateTaskTypeRequestBody {
   name?: string;
   updatedBy?: UserEntity;
+}
+
+export interface ITaskTypeFilter {
+  name?: FindOperator<string>;
 }

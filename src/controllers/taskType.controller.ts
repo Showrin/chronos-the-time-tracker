@@ -7,6 +7,7 @@ import {
 import { TaskTypeRepository } from "../repositories/taskType.repository";
 import { JwtPayload } from "jsonwebtoken";
 import { getPaginationConfig } from "../services/paginate.service";
+import { getTaskTypeFilter } from "../filters/taskType.filter";
 
 export const createTaskType = async (
   req: Request,
@@ -67,6 +68,7 @@ export const getTaskTypes = async (
     const [taskTypes, totalCount] = await TaskTypeRepository.getTaskTypes({
       skip,
       take,
+      where: getTaskTypeFilter(req),
     });
 
     return res.status(200).json({
