@@ -63,8 +63,6 @@ export const findSubordinates = async (
     const userId = req.params?.userId;
     const subordinates = await UserRepository.getSubordinates(userId);
 
-    console.log(userId);
-
     return res
       .status(200)
       .json({ message: "Subordinates fetched successfully.", subordinates });

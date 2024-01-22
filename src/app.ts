@@ -4,13 +4,14 @@ import express from "express";
 import dotenv from "dotenv";
 import { AppDataSource } from "./db/conf/appDataSource";
 import { baseRouter } from "./routes/base.route";
+import { rateLimiter } from "./services/rateLimit.service";
 
 dotenv.config();
 
 const app = express();
 
+app.use(rateLimiter);
 app.use(express.json());
-
 app.use(morgan("tiny"));
 
 // routes integration
