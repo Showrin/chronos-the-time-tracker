@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "chronos-api",
-    "dateExported": "2024-01-22T20:51:43.912Z",
+    "dateExported": "2024-01-22T23:18:03.070Z",
     "version": "1.1",
     "folders": [
         {
@@ -64,12 +64,12 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-01-11T21:14:29.865Z",
-            "modified": "2024-01-21T20:01:44.539Z",
+            "modified": "2024-01-22T23:17:54.399Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\": \"showrin@gmail.com\",\n  \"password\": \"1234\"\n}",
+                "raw": "{\n  \"email\": \"sajjad@gmail.com\",\n  \"password\": \"1234\"\n}",
                 "form": []
             },
             "tests": [
@@ -353,11 +353,11 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
             "name": "get all timeLogs",
-            "url": "/timeLogs?page=1&pageSize=10&taskType=5",
+            "url": "/timeLogs?page=1&pageSize=10",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-01-20T12:26:52.227Z",
-            "modified": "2024-01-22T20:28:18.872Z",
+            "modified": "2024-01-22T21:57:30.660Z",
             "headers": [],
             "params": [
                 {
@@ -378,7 +378,7 @@
                 },
                 {
                     "name": "owner",
-                    "value": "c908a9cd-d08c-4e7f-a23f-c51662c43483 ",
+                    "value": "010e9ab2-741f-44aa-9021-f820e119dea1",
                     "isDisabled": true,
                     "isPath": false
                 },
@@ -397,6 +397,7 @@
                 {
                     "name": "taskType",
                     "value": "5",
+                    "isDisabled": true,
                     "isPath": false
                 }
             ],
@@ -407,11 +408,11 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
             "name": "get all users",
-            "url": "/users?page=1&pageSize=10&managedBy=81d5e6a0-7749-40ac-8abc-23f1d5818618",
+            "url": "/users?page=1&pageSize=10",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-01-20T20:45:11.359Z",
-            "modified": "2024-01-22T20:47:10.426Z",
+            "modified": "2024-01-22T23:16:49.511Z",
             "headers": [],
             "params": [
                 {
@@ -445,6 +446,7 @@
                 {
                     "name": "managedBy",
                     "value": "81d5e6a0-7749-40ac-8abc-23f1d5818618",
+                    "isDisabled": true,
                     "isPath": false
                 }
             ],
@@ -501,7 +503,7 @@
             "method": "GET",
             "sortNum": 70000,
             "created": "2024-01-20T12:26:52.228Z",
-            "modified": "2024-01-20T19:54:54.754Z",
+            "modified": "2024-01-22T21:57:47.529Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -525,11 +527,11 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
             "name": "get subordinates",
-            "url": "/users/8f5f3d45-4678-40b9-b555-51491353736b/subordinates",
+            "url": "/users/45025a9c-5df8-4f46-b4da-75ad61ae8c44/subordinates",
             "method": "GET",
             "sortNum": 71875,
             "created": "2024-01-20T21:32:06.476Z",
-            "modified": "2024-01-21T16:28:05.101Z",
+            "modified": "2024-01-22T23:17:25.654Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -789,6 +791,20 @@
             "sortNum": 87500,
             "created": "2024-01-20T21:05:09.016Z",
             "modified": "2024-01-20T21:11:42.276Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "893319fc-ad45-4bee-843a-af92bdbc1862",
+            "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
+            "containerId": "ee769e49-5bca-4d33-a8b9-b7fcb6fce285",
+            "name": "logout a user",
+            "url": "/auth/logout",
+            "method": "POST",
+            "sortNum": 117500,
+            "created": "2024-01-22T21:16:09.178Z",
+            "modified": "2024-01-22T21:16:38.616Z",
             "headers": [],
             "params": [],
             "tests": []
