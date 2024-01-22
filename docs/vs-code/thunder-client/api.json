@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "chronos-api",
-    "dateExported": "2024-01-21T19:53:30.378Z",
+    "dateExported": "2024-01-22T20:51:43.912Z",
     "version": "1.1",
     "folders": [
         {
@@ -64,7 +64,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-01-11T21:14:29.865Z",
-            "modified": "2024-01-20T21:58:46.717Z",
+            "modified": "2024-01-21T20:01:44.539Z",
             "headers": [],
             "params": [],
             "body": {
@@ -161,12 +161,12 @@
             "method": "POST",
             "sortNum": 50000,
             "created": "2024-01-20T08:27:56.912Z",
-            "modified": "2024-01-20T08:35:50.499Z",
+            "modified": "2024-01-21T21:00:45.599Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\": \"Fix skinny canvas issue\",\n  \"project\": \"0a67b74c-d979-42d1-891a-e7bf3471b83f\"\n}",
+                "raw": "{\n  \"name\": \"Fix appbar loader issue\",\n  \"project\": \"0a67b74c-d979-42d1-891a-e7bf3471b83f\"\n}",
                 "form": []
             },
             "tests": []
@@ -195,13 +195,30 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "a0999b59-0178-4889-b775-4c9b2326d8a9",
             "name": "get all task type",
-            "url": "/taskTypes",
+            "url": "/taskTypes?page=1&pageSize=10",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-01-17T19:52:57.673Z",
-            "modified": "2024-01-17T20:19:51.303Z",
+            "modified": "2024-01-22T20:50:52.759Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "pageSize",
+                    "value": "10",
+                    "isPath": false
+                },
+                {
+                    "name": "name",
+                    "value": "analysis",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
             "tests": []
         },
         {
@@ -209,13 +226,90 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "b55df402-f1a8-45e0-b36a-aa08baf07591",
             "name": "get all projects",
-            "url": "/projects",
+            "url": "/projects?page=1&pageSize=10",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-01-18T19:53:52.809Z",
-            "modified": "2024-01-18T20:27:42.740Z",
+            "modified": "2024-01-22T20:07:14.637Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "pageSize",
+                    "value": "10",
+                    "isPath": false
+                },
+                {
+                    "name": "name",
+                    "value": "code",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "startedAtRangeStart",
+                    "value": "2023-01-01T00:00:00.000Z",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "startedAtRangeEnd",
+                    "value": "2023-01-01T00:00:00.000Z",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "endedAtRangeStart",
+                    "value": "2023-01-01T00:00:00.000Z",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "endedAtRangeEnd",
+                    "value": "2023-01-01T00:00:00.000Z",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "mode",
+                    "value": "fte",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "devManager",
+                    "value": "b79ee7b5-9c1a-4b9a-b31c-267fe60ce2e6",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "projectManager",
+                    "value": "ce99dc71-62c4-4fef-b1db-7fa5aa8999f2",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "devLead",
+                    "value": "81d5e6a0-7749-40ac-8abc-23f1d5818618",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "techLead",
+                    "value": "bb68481f-3aa6-448a-b843-80b0d75a92cd",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "projectLead",
+                    "value": "1f056847-b222-42bd-bfd9-bf6f3e9ff370",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
             "tests": []
         },
         {
@@ -223,13 +317,35 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "c7a64917-ff59-4fc5-b967-d71057fe512b",
             "name": "get all tasks",
-            "url": "/tasks",
+            "url": "/tasks?page=1&pageSize=10&project=9a67b74c-d979-42d1-891a-e7bf3471b83f",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-01-20T08:27:56.913Z",
-            "modified": "2024-01-20T08:37:22.875Z",
+            "modified": "2024-01-22T20:13:52.837Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "pageSize",
+                    "value": "10",
+                    "isPath": false
+                },
+                {
+                    "name": "name",
+                    "value": "skinny",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "project",
+                    "value": "9a67b74c-d979-42d1-891a-e7bf3471b83f",
+                    "isPath": false
+                }
+            ],
             "tests": []
         },
         {
@@ -237,13 +353,53 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "31ef38a2-9637-4a18-9b8c-e188723ec9ea",
             "name": "get all timeLogs",
-            "url": "/timeLogs",
+            "url": "/timeLogs?page=1&pageSize=10&taskType=5",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-01-20T12:26:52.227Z",
-            "modified": "2024-01-20T12:27:43.762Z",
+            "modified": "2024-01-22T20:28:18.872Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "pageSize",
+                    "value": "10",
+                    "isPath": false
+                },
+                {
+                    "name": "task",
+                    "value": "4d335e59-b046-4e21-96f3-cb594f049c64",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "owner",
+                    "value": "c908a9cd-d08c-4e7f-a23f-c51662c43483 ",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "startDate",
+                    "value": "2024-01-11",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "endDate",
+                    "value": "2024-01-18",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "taskType",
+                    "value": "5",
+                    "isPath": false
+                }
+            ],
             "tests": []
         },
         {
@@ -251,13 +407,47 @@
             "colId": "5f21635d-5451-46c3-81e7-cef36fbc76e5",
             "containerId": "d99c7e6b-5efd-450a-ac52-441fe2a468fd",
             "name": "get all users",
-            "url": "/users",
+            "url": "/users?page=1&pageSize=10&managedBy=81d5e6a0-7749-40ac-8abc-23f1d5818618",
             "method": "GET",
             "sortNum": 60000,
             "created": "2024-01-20T20:45:11.359Z",
-            "modified": "2024-01-20T20:45:50.607Z",
+            "modified": "2024-01-22T20:47:10.426Z",
             "headers": [],
-            "params": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "pageSize",
+                    "value": "10",
+                    "isPath": false
+                },
+                {
+                    "name": "name",
+                    "value": "sh",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "role",
+                    "value": "Engineer",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "email",
+                    "value": "sh",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "managedBy",
+                    "value": "81d5e6a0-7749-40ac-8abc-23f1d5818618",
+                    "isPath": false
+                }
+            ],
             "tests": []
         },
         {
