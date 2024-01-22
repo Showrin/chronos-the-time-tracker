@@ -24,5 +24,5 @@ export interface ITimeLogFilter {
   task?: { id: string };
   taskType?: { id: string };
   date?: FindOperator<Date>;
-  owner?: { id: string };
+  owner?: { id: string } | FindOperator<any>;
 }

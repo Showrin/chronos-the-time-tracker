@@ -61,8 +61,10 @@ export const getTimeLogs = async (
     const [timeLogs, totalCount] = await TimeLogRepository.getTimeLogs({
       skip,
       take,
-      where: getTimeLogFilter(req) as FindOptionsWhere<TimeLogEntity>,
+      where: (await getTimeLogFilter(req)) as FindOptionsWhere<TimeLogEntity>,
     });
+
+    console.log(await getTimeLogFilter(req));
 
     return res.status(200).json({
       message: "TimeLogs fetched successfully.",

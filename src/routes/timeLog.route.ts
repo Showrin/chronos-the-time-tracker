@@ -1,14 +1,21 @@
+import { checkTimeLogReadAuthority } from "./../middlewares/timeLog.middleware";
 import express from "express";
 import * as TimeLogController from "../controllers/timeLog.controller";
 import { canAccess } from "../middlewares/auth.middleware";
-import { checkTimeLogAuthority } from "../middlewares/timeLog.middleware";
+import { checkTimeLogModificationAuthority } from "../middlewares/timeLog.middleware";
 
 const timeLogRouter = express.Router();
 
-timeLogRouter.get("/", canAccess("*"), TimeLogController.getTimeLogs);
+timeLogRouter.get(
+  "/",
+  canAccess("*"),
+  checkTimeLogReadAuthority,
+  TimeLogController.getTimeLogs
+);
 timeLogRouter.get(
   "/:timeLogId",
   canAccess("*"),
+  checkTimeLogReadAuthority,
   TimeLogController.findTimeLogById
 );
 timeLogRouter.post("/", canAccess("*"), TimeLogController.createTimeLog);
@@ -16,13 +23,13 @@ timeLogRouter.post("/", canAccess("*"), TimeLogController.createTimeLog);
 timeLogRouter.put(
   "/:timeLogId",
   canAccess("*"),
-  checkTimeLogAuthority,
+  checkTimeLogModificationAuthority,
   TimeLogController.updateTimeLogById
 );
 timeLogRouter.delete(
   "/:timeLogId",
   canAccess("*"),
-  checkTimeLogAuthority,
+  checkTimeLogModificationAuthority,
   TimeLogController.deleteTimeLogById
 );
 
