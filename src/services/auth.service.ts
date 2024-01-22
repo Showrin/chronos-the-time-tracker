@@ -1,3 +1,4 @@
+import { Request } from "express";
 import bcrypt from "bcrypt";
 import { sign } from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -7,6 +8,12 @@ import { UserEntity } from "../db/entities/user.entity";
 import { RoleEnum } from "../enums/role.enum";
 
 dotenv.config();
+
+export const extractJwtFromRequest = (req: Request) => {
+  const token = req.header("Authorization")?.split(" ")[1];
+
+  return token;
+};
 
 export const signupUser = async (
   user: ISignupRequest

@@ -10,6 +10,8 @@ import {
 import AuthMessage from "../messages/auth.message";
 import errorMessage from "../messages/error.message";
 
+export const TOKEN_BLACKLIST = new Set();
+
 export const signup = async (
   req: Request,
   res: Response
@@ -84,4 +86,15 @@ export const signin = async (
   return res
     .status(200)
     .send({ message: "Login successful.", token: jwtToken });
+};
+
+export const logout = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const jwtToken = AuthService.extractJwtFromRequest(req);
+
+  TOKEN_BLACKLIST.add(jwtToken);
+
+  return res.status(200).send({ message: "Successfully logged out." });
 };

@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import { ICanAccessParams } from "../types/auth.type";
 import { RoleEnum } from "../enums/role.enum";
 import { UserRepository } from "../repositories/user.repository";
+import { extractJwtFromRequest } from "../services/auth.service";
+import { TOKEN_BLACKLIST } from "../controllers/auth.controller";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -11,7 +13,7 @@ export const authenticateJWT = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.header("Authorization")?.split(" ")[1];
+  const token = extractJwtFromRequest(req);
 
   if (!token) {
     return res.status(401).json({ message: "Unauthorized: No token provided" });
@@ -19,7 +21,7 @@ export const authenticateJWT = (
 
   if (!!JWT_SECRET) {
     jwt.verify(token, JWT_SECRET, (error, user) => {
-      if (error) {
+      if (error || TOKEN_BLACKLIST.has(token)) {
         return res.status(403).json({ message: "Forbidden: Invalid Token" });
       }
 
